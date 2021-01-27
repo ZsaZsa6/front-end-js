@@ -13,9 +13,9 @@ const loadFasts = () => {
         fast.render();
       })
 
-      })
-    }
-    
+    })
+}
+
 
 const loadDays = () => {
   fetch(DAYS_URL)
