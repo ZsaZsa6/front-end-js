@@ -2,14 +2,25 @@ document.addEventListener("DOMContentLoaded", () => loadFasts())
 
 const renderFast = (fastHash) => {
 
-    const div = document.createElement("div")
-    const ul = document.createElement("ul")
-    const li = document.createElement("li")
+    let startButton = document.createElement("startbutton");
+     // button.innerHTML = startFast
 
-    li.innerHTML = fastHash.start
-    li.innerHTML = fastHash.end
-    ul.appendChild(li)
-    div.appendChild(ul)
+    startButton.addEventListener ("click", function() {
+        alert("Your fast time has begun");
+      });
+    let endButton = document.createElement("endbutton");
+     // button.innerHTML = endFast
+     endButton.addEventListener ("click", function() {
+        alert("Your fast time has ended, enjoy your feast");
+      });
+    
+   
+    let body = document.getElementsByTagName("body")[0]
+    body.appendChild(startButton);
+    // let body = document.getElementsByTagName("endbutton");
+    // div.appendChild(endButton)
 
-    document.querySelector("body").appendChild(div)
+    
+    
+    
 }
