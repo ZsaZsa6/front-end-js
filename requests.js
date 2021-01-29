@@ -47,25 +47,29 @@ const createFast = () => {
     })
 }
 
-// Update
-const stopFast = () => {
-  fetch(FASTS_URL, {
-    method: "PUT",
+// Update 
+  const stopFast = () => {
+    // Fast.findById()
+  fetch(FASTS_URL + `/11`, {
+    method: "PATCH",
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ 
-      active: false
-      
-    }),
+    body: JSON.stringify({ id: 11, active: false })
   })
     .then(res => res.json())
-    .then(json => console.log(json))
-  }
+    .then(json => console.log(json))    
+    }
+
 // Delete
+
 const deleteFast = () => {
-  fetch(FAST_URL, {
-    method: "DELETE"
+  fetch(FAST_URL, + `/`,{
+    method: "DELETE",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: J
   })
     .then(res => res.json())
     .then(json => console.log(json))

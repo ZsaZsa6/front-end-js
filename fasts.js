@@ -12,7 +12,17 @@ class Fast {
         this.id = newFastHash.fast.id
         this.hours = newFastHash.hours
         this.minutes = newFastHash.minutes
+        Fast.all.push(this)
     }
+
+
+    static findById = (id)  => {
+        return this.all.find(fast => fast.id === id)
+    }
+
+
+    
+  
     render() {
         const div = document.createElement("div")
         const counterFast = document.createElement("div");
@@ -31,24 +41,32 @@ class Fast {
         
         const end = document.createElement("button");
         end.innerHTML = "End Fast"
+        end.setAttribute('id',`${this.id}`)
+        // let ebutton = document.getElementById(`${this.id}`)
+
         
+
+       
+        // div.appendChild(delete)
         div.appendChild(end)
         div.appendChild(counterFast)
+        // document.querySelector("body").appendChild(delete)
         document.querySelector("body").appendChild(div)
         document.querySelector("body").appendChild(end)
         
+       document.getElementById(`${this.id}`).addEventListener('click', () => {
+            alert("Your fast time has ended, enjoy your feast")
+            stopFast(`${this.id}`)
+        //    Fast.findById(id)
+            
+            counterFast.innerHTML = `Your Fast ended at ${this.hours} hours and ${this.minutes} minutes`
+        
 
-
-
-        end.addEventListener('click', () => {
-            // alert("Your fast time has ended, enjoy your feast")
-            stopFast()
-        })
-
-        // fastlist= for update array of fasts(by id)
+       })
 
     }
-}
+} 
+Fast.all = []
 
 
 
