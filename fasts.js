@@ -1,58 +1,54 @@
 // let nIntervalId
-const counterFast = document.createElement("counter");
+
 // let buttons = document.getElementsByTagName('button');
 
 
 
-document.addEventListener("DOMContentLoaded", () => loadFasts())
+
 
 class Fast {
-    constructor(fastHash) {
-        this.active = fastHash.active
-        this.createdAt = fastHash.created_at
-        this.updatedAt = fastHash.updated_at
+    constructor(newFastHash) {
+        this.active = newFastHash.fast.active
+        this.id = newFastHash.fast.id
+        this.hours = newFastHash.hours
+        this.minutes = newFastHash.minutes
     }
-    // nIntervalId = setInterval(startFast, 1000);
-
-
     render() {
         const div = document.createElement("div")
-
-        const start = document.createElement("button");
-        start.innerHTML = startFast()
-        const end = document.createElement("button");
-        end.innerHTML = endFast()
-        div.appendChild(start)
-        div.appendChild(end)
-        document.querySelector("body").appendChild(div)
-    }
-    
-}
-    start.addEventListener('click', () => {
-        document.addEventListener(createFast())
-            alert("Your fast time has begun")
-        })    
-    end.addEventListener("click", () => {
-        document.addEventListener(stopFast())
-            alert("Your fast time has ended, enjoy your feast")
-        })
-    
+        const counterFast = document.createElement("div");
+        counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
+        setInterval(() => {
+            if (this.minutes < 60){
+                this.minutes++
+            }
+            else { 
+                this.minutes = this.minutes - 60
+                this.hours++
+            }
+            counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
+            
+        }, 60000)
         
-        // document.addEventListener(createFast())
-        startFast() 
-        counterFast = (startInterval, 1000)
-        this.active = true
-        this.createdAt = Time.now     
+        const end = document.createElement("button");
+        end.innerHTML = "End Fast"
+        
+        div.appendChild(end)
+        div.appendChild(counterFast)
+        document.querySelector("body").appendChild(div)
+        document.querySelector("body").appendChild(end)
+        
 
-    
 
 
-        // startInterval when starting fast
-        // clearInterval when ending fast(updated_at in update action)
-        // start button turns green when activated, red when not
-        // end button turns red when inactive, green when fast is ended
+        end.addEventListener('click', () => {
+            // alert("Your fast time has ended, enjoy your feast")
+            stopFast()
+        })
 
-       
-    
+        // fastlist= for update array of fasts(by id)
+
+    }
+}
+
 
 
