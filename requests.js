@@ -1,9 +1,6 @@
 const BASE_URL = "http://localhost:3000"
-
 const FASTS_URL = `${BASE_URL}/fasts`
-const FAST_URL = `${BASE_URL}/fast`
-// const COMMENTS_URL = `${BASE_URL}/comments`
-// const COMMENT_URL = `${BASE_URL}/comment`
+
 
 
 
@@ -48,28 +45,34 @@ const createFast = () => {
 }
 
 // Update 
-  const stopFast = () => {
-    // Fast.findById()
-  fetch(FASTS_URL + `/11`, {
+
+const stopFast = (id) => {
+
+  fetch(`${FASTS_URL}/${id}`, {
     method: "PATCH",
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ id: 11, active: false })
+    body: JSON.stringify({ active: false })
   })
     .then(res => res.json())
-    .then(json => console.log(json))    
+    .then(json => console.log(json))
     }
+
+
+
+// updatedFast => {
+//   Fast(updatedFast).update();
 
 // Delete
 
 const deleteFast = () => {
-  fetch(FAST_URL, + `/`,{
+  fetch(FAST_URL, + `/`, {
     method: "DELETE",
     headers: {
       'Content-Type': 'application/json',
     },
-    body: J
+    body: ""
   })
     .then(res => res.json())
     .then(json => console.log(json))
@@ -77,23 +80,3 @@ const deleteFast = () => {
 
 
 
-// const loadComments = () => {
-//     fetch(COMMENTS_URL)
-//     .then(res => res.json())
-//     .then(json => {
-//       json.forEach
-//     })
-// }
-
-
-
-
-// const loadFasts = () => {
-//   fetch(FASTS_URL)
-//   .then(res => res.json())
-//   .then(json => {
-//     json.forEach(newFastHash => {
-//       let fast = new Fast(newFastHash)
-//       fast.render();
-//   })})
-// }

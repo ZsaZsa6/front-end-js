@@ -16,57 +16,74 @@ class Fast {
     }
 
 
-    static findById = (id)  => {
+    static findById = (id) => {
         return this.all.find(fast => fast.id === id)
     }
 
 
-    
-  
+
+
     render() {
         const div = document.createElement("div")
         const counterFast = document.createElement("div");
         counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
         setInterval(() => {
-            if (this.minutes < 60){
+            if (this.minutes < 60) {
                 this.minutes++
             }
-            else { 
+            else {
                 this.minutes = this.minutes - 60
                 this.hours++
             }
             counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
-            
+
         }, 60000)
-        
+
         const end = document.createElement("button");
         end.innerHTML = "End Fast"
-        end.setAttribute('id',`${this.id}`)
-        // let ebutton = document.getElementById(`${this.id}`)
-
-        
-
-       
-        // div.appendChild(delete)
+        end.setAttribute('id', `${this.id}`)
         div.appendChild(end)
         div.appendChild(counterFast)
         // document.querySelector("body").appendChild(delete)
         document.querySelector("body").appendChild(div)
+        // document.querySelector("body").appendChild(end)
+    
+       
         document.querySelector("body").appendChild(end)
+        document.getElementById(`${this.id}`)
+        end.addEventListener('click', e => {
+            e.preventDefault();
+            const id = (this.id);
+            Fast.findById(id);
+            alert("Your fast time has ended")
+        stopFast(id)
         
-       document.getElementById(`${this.id}`).addEventListener('click', () => {
-            alert("Your fast time has ended, enjoy your feast")
-            stopFast(`${this.id}`)
-        //    Fast.findById(id)
-            
-            counterFast.innerHTML = `Your Fast ended at ${this.hours} hours and ${this.minutes} minutes`
-        
+    })
 
-       })
 
+    // loadFasts()
+
+
+          
+
+
+
+            //     document.querySelector('id')
+            //     end.addEventListener('click', e => {
+            //         const id = parseInt(e.target.dataset.id);
+            //         const fast = fast.findById(id);
+            //         console.log(fast);
+            //     });
+        }
     }
-} 
+    
+
+
+// renderUpdateFast()       return fast
+
+// // renderUpdateFast() {
+
+// // }
+
 Fast.all = []
-
-
 
