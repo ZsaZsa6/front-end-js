@@ -1,6 +1,6 @@
 const BASE_URL = "http://localhost:3000"
 const FASTS_URL = `${BASE_URL}/fasts`
-const COMMENTS_URL = `${BASE_URL}/comments`
+
 
 
 
@@ -12,7 +12,9 @@ const loadFasts = () => {
     .then(json => {
       json.forEach(data => {
         new Fast(data.fast.id, data.fast.active, data.hours, data.minutes).render();
+        new Comment( data.comments, data.fast.id).render();
       })
+
     })
 }
 // Show
@@ -21,6 +23,7 @@ const showFasts = () => {
     .then(res => res.json())
     .then(data => {
         new Fast(data.fast.id, data.fast.active, data.hours, data.minutes).render();
+        new Comment( data.comments, data.fast.id).render();
     })
 }
 // Create
@@ -35,6 +38,7 @@ const createFast = () => {
     .then(res => res.json())
     .then(data => {
       new Fast(data.fast.id, data.fast.active, data.hours, data.minutes).render();
+      new Comment( data.comments, data.fast.id).render();
     })
 }
 // Update 
