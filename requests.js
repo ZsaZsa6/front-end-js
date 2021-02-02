@@ -39,7 +39,7 @@ const createFast = () => {
 // Update 
 
 const stopFast = (id) => {
-  fetch(`${FASTS_URL}/${id}`, {
+  fetch(FASTS_URL +`/${id}`, {
     method: "PATCH",
     headers: {
       'Content-Type': 'application/json',
@@ -58,9 +58,8 @@ const deleteFast = (id) => {
     method: "DELETE"
 
   })
-  .then(res => res.json())
-  .then(data => {
-  Fast.findById(data.fast.id).delete(data.fast);
+  .then(() => {
+  Fast.findById(id).delete();
   })
    .catch(errorHandling)
 }
