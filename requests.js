@@ -1,5 +1,6 @@
 const BASE_URL = "http://localhost:3000"
 const FASTS_URL = `${BASE_URL}/fasts`
+const COMMENTS_URL = `${BASE_URL}/comments`
 
 
 
@@ -72,3 +73,5 @@ const errorHandling = (error) => {
   // alert.$el.innerText = error.message
   // document.querySelector('body').appendChild(alert.$el)
 }
+
+

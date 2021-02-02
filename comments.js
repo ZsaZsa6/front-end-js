@@ -1,3 +1,12 @@
+class Comment {
+    render(){
+        
+    }
+}
+
+
+
+
 // submit.addEventListener('click', addComment)
 
 // const submit = document.getElementById('submit');
