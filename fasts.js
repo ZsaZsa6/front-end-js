@@ -1,33 +1,20 @@
-// let nIntervalId
-
-// let buttons = document.getElementsByTagName('button');
-
-
-
-
-
 class Fast {
-    constructor(newFastHash) {
-        this.active = newFastHash.fast.active
-        this.id = newFastHash.fast.id
-        this.hours = newFastHash.hours
-        this.minutes = newFastHash.minutes
-        Fast.all.push(this)
+    static all = {}
+    constructor(id, active, hours, minutes) {
+        this.active = active
+        this.id = id
+        this.hours = hours
+        this.minutes = minutes
+        this.counterId = this.startCounter()
+        this.counterFast = document.createElement("div")
+        this.constructor.all = { ...this.constructor.all, [id]: this }
     }
 
-
-    static findById = (id) => {
-        return this.all.find(fast => fast.id === id)
+    static findById(id) {
+        return this.all[id]
     }
-
-
-
-
-    render() {
-        const div = document.createElement("div")
-        const counterFast = document.createElement("div");
-        counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
-        setInterval(() => {
+    startCounter() {
+        return setInterval(() => {
             if (this.minutes < 60) {
                 this.minutes++
             }
@@ -35,55 +22,59 @@ class Fast {
                 this.minutes = this.minutes - 60
                 this.hours++
             }
-            counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
+            this.counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
 
         }, 60000)
 
+    }
+    render() {
+        if (this.active = false)
+            this.update(hours, minutes)
+        else this.counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
+        const div = document.createElement("div")
         const end = document.createElement("button");
         end.innerHTML = "End Fast"
-        end.setAttribute('id', `${this.id}`)
+        end.setAttribute('id', `stop-${this.id}`)
         div.appendChild(end)
-        div.appendChild(counterFast)
-        // document.querySelector("body").appendChild(delete)
+        div.appendChild(this.counterFast)
+        const deleteF = document.createElement("button");
+        deleteF.innerHTML = "Delete Fast"
+        document.querySelector("body").appendChild(deleteF)
         document.querySelector("body").appendChild(div)
-        // document.querySelector("body").appendChild(end)
-    
-       
         document.querySelector("body").appendChild(end)
-        document.getElementById(`${this.id}`)
+        document.getElementById(`delete-${this.id}`)
+        deleteF.setAttribute('id', `delete-${this.id}`)
+
         end.addEventListener('click', e => {
             e.preventDefault();
-            const id = (this.id);
-            Fast.findById(id);
-            alert("Your fast time has ended")
-        stopFast(id)
-        
-    })
+            let id = e.target.getAttribute('id')
+            stopFast(id)
+        })
+        deleteF.addEventListener('click', e => {
+            e.preventDefault();
+            let id = e.target.getAttribute('id')
+            deleteFast(id)
+        })
 
 
-    // loadFasts()
-
-
-          
-
-
-
-            //     document.querySelector('id')
-            //     end.addEventListener('click', e => {
-            //         const id = parseInt(e.target.dataset.id);
-            //         const fast = fast.findById(id);
-            //         console.log(fast);
-            //     });
-        }
     }
-    
+    update(hours, minutes) {
+        this.active = false
+        this.hours = hours
+        this.minutes = minutes
+
+        clearInterval(this.counterId)
+        alert("Your fast time has ended")
+        this.counterFast.innerHTML = `You ended your fast at ${this.hours} hours and ${this.minutes} minutes`
+    }
+    delete(id) {
+        this.id = id
+        // fast = Fast.findById(id)
+        fast.remove
 
 
-// renderUpdateFast()       return fast
+    }
+}
 
-// // renderUpdateFast() {
 
-// // }
-
-Fast.all = []
 
