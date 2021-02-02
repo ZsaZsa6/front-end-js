@@ -47,13 +47,13 @@ class Fast {
 
         end.addEventListener('click', e => {
             e.preventDefault();
-            let id = e.target.getAttribute('id')
+            let id = e.target.getAttribute('id').slice('-')[5]
             stopFast(id)
         })
         deleteF.addEventListener('click', e => {
             e.preventDefault();
-            let id = e.target.getAttribute('id')
-            deleteFast(id)
+            let id = (e.target.getAttribute('id').slice('-')[7])
+           
         })
 
 
@@ -68,10 +68,9 @@ class Fast {
         this.counterFast.innerHTML = `You ended your fast at ${this.hours} hours and ${this.minutes} minutes`
     }
     delete(id) {
-        this.id = id
-        // fast = Fast.findById(id)
-        fast.remove
-
+        this.counterid.remove()
+        
+        // fast.remove()
 
     }
 }

@@ -54,13 +54,13 @@ const stopFast = (id) => {
 }
 // Delete
 const deleteFast = (id) => {
-  fetch(`${FASTS_URL}/${id}`, {
+  fetch(FASTS_URL + `/${id}`, {
     method: "DELETE"
 
   })
   .then(res => res.json())
   .then(data => {
-    Fast.findById(data.fast.id).delete(id);
+  Fast.findById(data.fast.id).delete(data.fast);
   })
    .catch(errorHandling)
 }
