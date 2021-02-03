@@ -5,15 +5,20 @@ class Fast {
         this.id = id
         this.hours = hours
         this.minutes = minutes
-        this.counterId = this.startCounter()
         this.counterFast = document.createElement("div")
+        this.counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
+        this.counterId = this.startCounter()
+        this.comments = {}
         this.constructor.all = { ...this.constructor.all, [id]: this }
     }
+
 
     static findById(id) {
         return this.all[id]
     }
+
     startCounter() {
+
         return setInterval(() => {
             if (this.minutes < 60) {
                 this.minutes++
@@ -27,55 +32,102 @@ class Fast {
         }, 60000)
 
     }
+
     render() {
-        if (this.active = false)
-            this.update(hours, minutes)
-        else this.counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
-        const div = document.createElement("div")
-        const end = document.createElement("button");
-        end.innerHTML = "End Fast"
-        end.setAttribute('id', `stop-${this.id}`)
         
-        const deleteF = document.createElement("button");
-        deleteF.innerHTML = "Delete Fast"
-        
-        document.getElementById(`delete-${this.id}`)
-        deleteF.setAttribute('id', `delete-${this.id}`)
-        
-        div.appendChild(end)
+        const div = document.createElement('div')
         document.querySelector("body").appendChild(div)
-        document.querySelector("body").appendChild(end)
         div.appendChild(this.counterFast)
+        // const id = getAttribute('id').split('-')[1]
         
-        document.querySelector("body").appendChild(deleteF)
-        end.addEventListener('click', e => {
-            e.preventDefault();
-            let id = e.target.getAttribute('id').split('-',)[1]
-            stopFast(id)
-        })
-        deleteF.addEventListener('click', e => {
-            e.preventDefault();
-            let id = e.target.getAttribute('id').split('-')[1]
-            deleteFast(id)
-        })
+        Comment.buildCommentForm();
+        Comment.buildSubmitButton();
+        Comment.buildComments();
+        this.buildUpdateFast();
+
+        this.buildDeleteButton();
+        
 
 
     }
+
+
+    buildUpdateFast() {
+
+        const div = document.createElement("div")
+        const end = document.createElement("button");
+
+        document.querySelector("body").appendChild(div)
+        document.querySelector("body").appendChild(end)
+        end.innerHTML = "End Fast"
+        end.setAttribute('id', `stop-${this.id}`)
+        // const id = getAttribute('id').split('-')[1]
+        end.addEventListener('click', () => stopFast(this.id))
+    }
+
+
+
+    stopFast() {
+
+        // const id = getAttribute('id').split('-')[1]
+        if (this.active = false) {
+            this.update(hours, minutes)
+        } else {
+            this.counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
+        }
+    }
+
     update(hours, minutes) {
         this.active = false
         this.hours = hours
         this.minutes = minutes
 
+
         clearInterval(this.counterId)
         alert("Your fast time has ended")
         this.counterFast.innerHTML = `You ended your fast at ${this.hours} hours and ${this.minutes} minutes`
     }
+
+
+
+
+
+
+    buildDeleteButton() {
+
+        const div = document.createElement("div")
+        const deleteF = document.createElement("button");
+        deleteF.innerHTML = "Delete Fast"
+        document.querySelector("body").appendChild(div)
+        document.querySelector("body").appendChild(deleteF)
+        deleteF.setAttribute('id', `delete-${this.id}`)
+
+        // const id = getAttribute('id').split('-')[1]
+        deleteF.addEventListener('click', () => deleteFast(this.id))
+    }
+
+
+
     delete() {
-        document.getElementById(`stop-${this.id}`).remove()
-        document.getElementById(`delete-${this.id}`).remove()
+
+        const deleteF = document.getElementById(`delete-${this.id}`)
+        const end = document.getElementById(`stop-${this.id}`)
+        deleteF.remove()
+        end.remove()
         this.counterFast.remove()
-        
+        const submitComment = document.getElementById(this.comments.findById(`${Comment.fastId}`))
+        submitComment.remove()
+    }
+
+    addComment(comment) {
+        const newComment = new Comment(comment.content, comment.id, this.id)
+        this.comments = { ...this.comments, [comment.id]: newComment }
+        comment.render()
     }
 }
+
+
+
+
 
 

@@ -1,70 +1,58 @@
 class Comment {
     static all = {}
-    constructor(comments, id) {
-        this.comments = comments
+    constructor(content, id, fastId) {
+        this.content = content
         this.id = id
+        this.fastId = fastId
     }
     static findById(id) {
         return this.all[id]
     }
-    render() {
-        this.buildComments();
-        this.buildCommentForm();
-        this.buildInputField();
-        this.buildSubmitButton();
-
-    }
-
-    buildCommentForm() {
+    static buildCommentForm() {
         const commentForm = document.createElement('form')
-        commentForm.setAttribute('content', "Comment")
-        commentForm.setAttribute("id", `${this.id}`)
-        document.querySelector('body').appendChild(commentForm)
-    }
-
-    buildInputField() {
-        const commentInput = document.createElement('input')
-        commentInput.setAttribute("id", `${this.id}`)
-        document.querySelector('body').appendChild(commentInput)
-    }
-    buildComments() {
-        const comments = document.createElement('li')
-        comments.setAttribute("id", `${this.id}`)
         const div = document.createElement('div')
-        const ul = document.createElement('ul', `${this.id}`)
         document.querySelector('body').appendChild(div)
-        document.querySelector('div').appendChild(ul)
-        document.querySelector('ul', `${this.id}`).appendChild(comments)
+        document.querySelector('div').appendChild(commentForm)
+
+        const commentInput = document.createElement('input')
+        document.querySelector('div').appendChild(commentInput)
     }
-    buildSubmitButton() {
+    static buildSubmitButton() {
         const submitComment = document.createElement('button')
         submitComment.innerHTML = "Submit Comment"
         submitComment.setAttribute('type', 'submit')
         document.querySelector('body').appendChild(submitComment)
-        submitComment.setAttribute('id', `${this.id}`)
-        submitComment.addEventListener('submit', (e) => {
-            let id = e.target.getAttribute('id', `${this.id}`)
-            this.findById(`${this.id}`)
-            // createFast()
-
-        })
-    }
-
-    delete() {
-        document.getElementById(`${this.id}`).remove()
-        this.comments.remove()
-        this.findById(id).remove()
+        submitComment.setAttribute('id', this.fastId)
+        submitComment.addEventListener('submit', createComment)
 
     }
+    static buildComments() {
+        const comment = document.createElement('li')
+        const li = document.createElement('li')
+        const ul = document.createElement('ul')
+        const div = document.createElement('div')
+        comment.setAttribute('id', this.fastId)
+        document.querySelector('body').appendChild(div)
+        document.querySelector('div').appendChild(ul)
+        document.querySelector('ul').appendChild(comment)
+
+    }
+
+
+
+render() {
+
+    // const comment = document.createElement('li')
+    // const li = document.createElement('li')
+    // const ul = document.createElement('ul')
+    // const div = document.createElement('div')
+    // comment.setAttribute('id', this.fastId)
+    // document.querySelector('body').appendChild(div)
+    // document.querySelector('div').appendChild(ul)
+    // document.querySelector('ul').appendChild(comment)
 
 }
 
-//         Input 
-// Div
-// Body
-// Form
-// Button 
-// Li
-// Ul
-
+ 
+}
 

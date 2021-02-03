@@ -1,6 +1,6 @@
 const BASE_URL = "http://localhost:3000"
 const FASTS_URL = `${BASE_URL}/fasts`
-
+const COMMENTS_URL = `${BASE_URL}/comments`
 
 
 
@@ -27,6 +27,21 @@ const showFasts = () => {
     })
 }
 // Create
+const createComment = () => {
+  fetch (COMMENTS_URL, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: ""
+  })
+  .then(res => res.json())
+  .then(data => {
+    const comment = new Comment(data.comment.content, data.comment.id, comment.fast.id).render()
+    Fast.addComment(comment)
+  })
+
+}
 const createFast = () => {
   fetch(FASTS_URL, {
     method: "POST",
@@ -37,8 +52,8 @@ const createFast = () => {
   })
     .then(res => res.json())
     .then(data => {
-      new Fast(data.fast.id, data.fast.active, data.hours, data.minutes).render();
-      new Comment(data.comments, data.fast.id).render();
+      const fast = new Fast(data.fast.id, data.fast.active, data.hours, data.minutes).render();
+      data.fast.comments.forEach(comment => fast.addComment(comment))
     })
 }
 // Update 
@@ -59,7 +74,7 @@ const stopFast = (id) => {
 }
 // Delete
 const deleteFast = (id) => {
-  fetch(FASTS_URL + `/${id}`, {
+    fetch(FASTS_URL + `/${id}`, {
     method: "DELETE"
 
   })
