@@ -38,7 +38,7 @@ const createFast = () => {
     .then(res => res.json())
     .then(data => {
       new Fast(data.fast.id, data.fast.active, data.hours, data.minutes).render();
-      new Comment( data.comments, data.fast.id).render();
+      new Comment(data.comments, data.fast.id).render();
     })
 }
 // Update 
@@ -65,6 +65,7 @@ const deleteFast = (id) => {
   })
   .then(() => {
   Fast.findById(id).delete();
+  Comment.findById(id).delete();
   })
    .catch(errorHandling)
 }

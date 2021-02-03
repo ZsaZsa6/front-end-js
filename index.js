@@ -6,7 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("body").appendChild(create)
     create.addEventListener('click', () => {
         alert("Your fast time has begun")
-        createFast()
+        
+            createFast()
+            // submitComment()
+
+        })
+        loadFasts()
     })
-    loadFasts()
-})

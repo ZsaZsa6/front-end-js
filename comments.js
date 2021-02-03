@@ -1,79 +1,70 @@
 class Comment {
-
+    static all = {}
     constructor(comments, id) {
         this.comments = comments
         this.id = id
-        // this.content = comment.content
+    }
+    static findById(id) {
+        return this.all[id]
     }
     render() {
-        const comments = document.createElement('li')
-        const commentInput = document.createElement('comment-input')
-        comments.innerText = commentInput["value"];
-        const commentForm = document.createElement('comment-form')
-        // commentForm.setAttribute('type', 'text')
+        this.buildComments();
+        this.buildCommentForm();
+        this.buildInputField();
+        this.buildSubmitButton();
+
+    }
+
+    buildCommentForm() {
+        const commentForm = document.createElement('form')
         commentForm.setAttribute('content', "Comment")
         commentForm.setAttribute("id", `${this.id}`)
-        commentInput.setAttribute('type', 'text')
-        commentInput.setAttribute('placeholder', 'Comment')
+        document.querySelector('body').appendChild(commentForm)
+    }
 
-
-        const ul = document.createElement('ul')
+    buildInputField() {
+        const commentInput = document.createElement('input')
+        commentInput.setAttribute("id", `${this.id}`)
+        document.querySelector('body').appendChild(commentInput)
+    }
+    buildComments() {
+        const comments = document.createElement('li')
+        comments.setAttribute("id", `${this.id}`)
         const div = document.createElement('div')
+        const ul = document.createElement('ul', `${this.id}`)
+        document.querySelector('body').appendChild(div)
+        document.querySelector('div').appendChild(ul)
+        document.querySelector('ul', `${this.id}`).appendChild(comments)
+    }
+    buildSubmitButton() {
         const submitComment = document.createElement('button')
         submitComment.innerHTML = "Submit Comment"
         submitComment.setAttribute('type', 'submit')
-        submitComment.setAttribute('id', `${this.id}`)
-
-        document.querySelector('body').appendChild(div)
         document.querySelector('body').appendChild(submitComment)
-        document.querySelector('body').appendChild(commentForm)
-        document.querySelector('body').appendChild(commentInput)
-        document.querySelector('div').appendChild(ul)
-        document.querySelector('ul').appendChild(comments)
-
-        
-        submitComment.addEventListener('submit', addComment => {
+        submitComment.setAttribute('id', `${this.id}`)
+        submitComment.addEventListener('submit', (e) => {
             let id = e.target.getAttribute('id', `${this.id}`)
-        
-            
-            addComment(id)
-            commentForm.setAttribute('content', "Comment")
-            commentForm.setAttribute("id", `${this.id}`)
-            commentInput.setAttribute('type', 'text')
-            commentInput.setAttribute('placeholder', 'Comment')
-            commentInput.setAttribute('style', 'cols="30" rows="10"')
-            
-            document.forms["comment-form"].reset()
+            this.findById(`${this.id}`)
+            // createFast()
+
         })
-        
+    }
+
+    delete() {
+        document.getElementById(`${this.id}`).remove()
+        this.comments.remove()
+        this.findById(id).remove()
 
     }
+
 }
 
+//         Input 
+// Div
+// Body
+// Form
+// Button 
+// Li
+// Ul
 
 
-
-// submit.addEventListener('click', addComment)
-
-// const submit = document.getElementById('submit');
-// f
-
-//     let commentInput = document.getElementById("comment-input")["value"];
-//     uComments.innerText = commentInput;
-
-//     document.forms["comment-form"].reset();
-
-//   }
-
-
-// HTML
-// <h3>Comments</h3>
-
-
-//     <h3>Leave a comment</h3>
-
-//     <form id="comment-form" action="">
-//       <input type='text' name="comment" id="comment-input" cols="30" rows="10">
-//       </br>
-//       <button id='submit'>submit</button>
-//     </form>
