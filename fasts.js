@@ -39,16 +39,11 @@ class Fast {
         document.querySelector("body").appendChild(div)
         div.appendChild(this.counterFast)
         // const id = getAttribute('id').split('-')[1]
-        
-        Comment.buildCommentForm();
-        Comment.buildSubmitButton();
-        Comment.buildComments();
+        Comment.buildCommentForm(this.id);
+        debugger
+        Comment.buildSubmitButton(this.id);
         this.buildUpdateFast();
-
         this.buildDeleteButton();
-        
-
-
     }
 
 
@@ -115,8 +110,8 @@ class Fast {
         deleteF.remove()
         end.remove()
         this.counterFast.remove()
-        const submitComment = document.getElementById(this.comments.findById(`${Comment.fastId}`))
-        submitComment.remove()
+        // const submitComment = document.getElementById(this.comments.findById(`${Comment.fastId}`))
+        // submitComment.remove()
     }
 
     addComment(comment) {

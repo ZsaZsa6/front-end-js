@@ -6,27 +6,42 @@ class Comment {
         this.fastId = fastId
     }
     static findById(id) {
-        return this.all[id]
+        return this.constructor.all[id]
     }
-    static buildCommentForm() {
+    static buildCommentForm(fastId) {
         const commentForm = document.createElement('form')
-        const div = document.createElement('div')
-        document.querySelector('body').appendChild(div)
+        commentForm.setAttribute('id', 'comment-form')
         document.querySelector('div').appendChild(commentForm)
 
+
+        // commentForm.addEventListener('submit', (e) => {
+            document.querySelector('form').addEventListener('submit', (e) => {
+                console.log(e.target.value)
+                debugger
+
+            } )
+            createComment({fast_id: fastId})
+        
+        const div = document.createElement('div')
+        document.querySelector('body').appendChild(div)
+
         const commentInput = document.createElement('input')
+        // document.querySelector('#comment-form').appendChild(submitComment)
+        
         document.querySelector('div').appendChild(commentInput)
     }
-    static buildSubmitButton() {
+    static buildSubmitButton(fastId) {
         const submitComment = document.createElement('button')
         submitComment.innerHTML = "Submit Comment"
         submitComment.setAttribute('type', 'submit')
-        document.querySelector('body').appendChild(submitComment)
+        document.querySelector('#comment-form').appendChild(submitComment)
         submitComment.setAttribute('id', this.fastId)
-        submitComment.addEventListener('submit', createComment)
+
 
     }
-    static buildComments() {
+
+    render() {
+
         const comment = document.createElement('li')
         const li = document.createElement('li')
         const ul = document.createElement('ul')
@@ -39,20 +54,5 @@ class Comment {
     }
 
 
-
-render() {
-
-    // const comment = document.createElement('li')
-    // const li = document.createElement('li')
-    // const ul = document.createElement('ul')
-    // const div = document.createElement('div')
-    // comment.setAttribute('id', this.fastId)
-    // document.querySelector('body').appendChild(div)
-    // document.querySelector('div').appendChild(ul)
-    // document.querySelector('ul').appendChild(comment)
-
-}
-
- 
 }
 

@@ -12,7 +12,7 @@ const loadFasts = () => {
     .then(json => {
       json.forEach(data => {
         new Fast(data.fast.id, data.fast.active, data.hours, data.minutes).render();
-        new Comment( data.comments, data.fast.id).render();
+        new Comment(data.comments, data.fast.id).render();
       })
 
     })
@@ -22,27 +22,34 @@ const showFasts = () => {
   fetch(FAST_URL)
     .then(res => res.json())
     .then(data => {
-        new Fast(data.fast.id, data.fast.active, data.hours, data.minutes).render();
-        new Comment( data.comments, data.fast.id).render();
+      new Fast(data.fast.id, data.fast.active, data.hours, data.minutes).render();
+      new Comment(data.comments, data.fast.id).render();
     })
 }
 // Create
-const createComment = () => {
-  fetch (COMMENTS_URL, {
+const createComment = (comment) => {
+  fetch(COMMENTS_URL, {
     method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+       'Content-Type': 'application/json',
     },
-    body: ""
+    body: JSON.stringify(
+      
+     comment
+    )
   })
-  .then(res => res.json())
-  .then(data => {
-    const comment = new Comment(data.comment.content, data.comment.id, comment.fast.id).render()
-    Fast.addComment(comment)
-  })
+    .then(res => res.json())
+    .then(data => {
+      
+      console.log(data.comment)
+
+      const comment = new Comment(data.comment.content, data.comment.id, comment.fast.id)
+      Fast.addComment(comment)
+    })
 
 }
 const createFast = () => {
+
   fetch(FASTS_URL, {
     method: "POST",
     headers: {
@@ -59,12 +66,11 @@ const createFast = () => {
 // Update 
 
 const stopFast = (id) => {
-  fetch(FASTS_URL +`/${id}`, {
+  fetch(FASTS_URL + `/${id}`, {
     method: "PATCH",
     headers: {
       'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ active: false })
+    }
   })
     .then(res => res.json())
     .then(data => {
@@ -74,15 +80,15 @@ const stopFast = (id) => {
 }
 // Delete
 const deleteFast = (id) => {
-    fetch(FASTS_URL + `/${id}`, {
+  fetch(FASTS_URL + `/${id}`, {
     method: "DELETE"
 
   })
-  .then(() => {
-  Fast.findById(id).delete();
-  Comment.findById(id).delete();
-  })
-   .catch(errorHandling)
+    .then(() => {
+      Fast.findById(id).delete();
+      Comment.findById(id).delete();
+    })
+    .catch(errorHandling)
 }
 
 
