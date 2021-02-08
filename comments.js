@@ -8,7 +8,7 @@ class Comment {
     static findById(id) {
         return this.constructor.all[id]
     }
-    static buildCommentForm(fastId) {
+    static buildCommentForm(fastId, content) {
         const commentForm = document.createElement('form')
         commentForm.setAttribute('id', 'comment-form')
         document.querySelector('div').appendChild(commentForm)
@@ -20,14 +20,13 @@ class Comment {
                 debugger
 
             } )
-            createComment({fast_id: fastId})
+            createComment({fast_id: fastId, content: content})
         
         const div = document.createElement('div')
         document.querySelector('body').appendChild(div)
 
         const commentInput = document.createElement('input')
-        // document.querySelector('#comment-form').appendChild(submitComment)
-        
+        // const content = document.querySelector(commentInput)
         document.querySelector('div').appendChild(commentInput)
     }
     static buildSubmitButton(fastId) {
@@ -42,17 +41,20 @@ class Comment {
 
     render() {
 
-        const comment = document.createElement('li')
-        const li = document.createElement('li')
+        const comment = document.createElement('input')
+        const input = document.createElement('li')
         const ul = document.createElement('ul')
         const div = document.createElement('div')
         comment.setAttribute('id', this.fastId)
         document.querySelector('body').appendChild(div)
         document.querySelector('div').appendChild(ul)
-        document.querySelector('ul').appendChild(comment)
+        document.querySelector('ul').appendChild(input)
+        const content = document.querySelector(input)
 
     }
+// renderComment() {
 
+// }
 
 }
 

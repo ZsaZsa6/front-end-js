@@ -39,11 +39,10 @@ class Fast {
         document.querySelector("body").appendChild(div)
         div.appendChild(this.counterFast)
         // const id = getAttribute('id').split('-')[1]
-        Comment.buildCommentForm(this.id);
-        debugger
-        Comment.buildSubmitButton(this.id);
         this.buildUpdateFast();
         this.buildDeleteButton();
+        Comment.buildCommentForm(this.id);
+        Comment.buildSubmitButton(this.id);
     }
 
 

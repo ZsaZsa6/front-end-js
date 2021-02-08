@@ -41,7 +41,7 @@ const createComment = (comment) => {
     .then(res => res.json())
     .then(data => {
       
-      console.log(data.comment)
+      console.log(comment)
 
       const comment = new Comment(data.comment.content, data.comment.id, comment.fast.id)
       Fast.addComment(comment)
