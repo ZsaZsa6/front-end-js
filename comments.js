@@ -8,39 +8,54 @@ class Comment {
     static findById(id) {
         return this.constructor.all[id]
     }
-    static buildCommentForm(fastId, content) {
-        const commentForm = document.createElement('form')
-        commentForm.setAttribute('id', 'comment-form')
-        document.querySelector('div').appendChild(commentForm)
-
-
-        // commentForm.addEventListener('submit', (e) => {
-            document.querySelector('form').addEventListener('submit', (e) => {
-                console.log(e.target.value)
-                debugger
-
-            } )
-            createComment({fast_id: fastId, content: content})
+    static buildCommentForm(fastId) {
+        const comment = document.getElementById('comment-form')
         
-        const div = document.createElement('div')
-        document.querySelector('body').appendChild(div)
+        const commentForm = document.createElement('form')
+        commentForm.setAttribute('id', `${fastId}`)
+        commentForm.setAttribute('action', "")
+        commentForm.setAttribute('method', 'post')
+        comment.appendChild(commentForm)
 
-        const commentInput = document.createElement('input')
-        // const content = document.querySelector(commentInput)
-        document.querySelector('div').appendChild(commentInput)
+        const heading = document.createElement('h4');
+        heading.innerHTML = "Comment on your fast: ";
+        commentForm.appendChild(heading);
+
+        const commentlabel = document.createElement('label');
+        commentlabel.innerHTML = "Your Comment: ";
+        commentForm.appendChild(commentlabel);
+
+        const texareaelement = document.createElement('textarea');
+        texareaelement.setAttribute("name", "ccomment");
+        commentForm.appendChild(texareaelement);
+
+        const submitComment = document.createElement('input');
+        submitComment.setAttribute("type", "submit");
+        submitComment.setAttribute("name", "dsubmit");
+        submitComment.setAttribute("value", "Submit");
+        commentForm.appendChild(submitComment);
+
+
+        document.querySelector('form').addEventListener('submit', (e) => {
+            
+            // console.log(e.target.value)
+            createComment({ fast_id: fastId, content: content })
+
+        })
+
+
     }
-    static buildSubmitButton(fastId) {
-        const submitComment = document.createElement('button')
-        submitComment.innerHTML = "Submit Comment"
-        submitComment.setAttribute('type', 'submit')
-        document.querySelector('#comment-form').appendChild(submitComment)
-        submitComment.setAttribute('id', this.fastId)
 
+    // static buildSubmit(fastId) {
 
-    }
+    //     const submitComment = document.createElement('button')
+    //     submitComment.innerHTML = "Submit Comment"
+    //     submitComment.setAttribute('type', 'submit')
+    //     document.getElementsById(`${fastId}`).appendChild(submitComment)
+    //     submitComment.setAttribute('id', this.fastId)
+    // }
 
-    render() {
-
+    static displayComments() {
         const comment = document.createElement('input')
         const input = document.createElement('li')
         const ul = document.createElement('ul')
@@ -49,12 +64,17 @@ class Comment {
         document.querySelector('body').appendChild(div)
         document.querySelector('div').appendChild(ul)
         document.querySelector('ul').appendChild(input)
-        const content = document.querySelector(input)
+    }
+
+    render() {
+
+
+        // const Cinput = document.querySelector(commentInput)
 
     }
-// renderComment() {
+    // renderComment() {
 
-// }
+    // }
 
 }
 

@@ -41,10 +41,10 @@ const createComment = (comment) => {
     .then(res => res.json())
     .then(data => {
       
-      console.log(comment)
+      // console.log(comment)
 
-      const comment = new Comment(data.comment.content, data.comment.id, comment.fast.id)
-      Fast.addComment(comment)
+      const newComment = new Comment(data.comment.content, data.comment.id, comment.fast.id)
+      Fast.addComment(newComment)
     })
 
 }

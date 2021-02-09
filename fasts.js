@@ -38,11 +38,11 @@ class Fast {
         const div = document.createElement('div')
         document.querySelector("body").appendChild(div)
         div.appendChild(this.counterFast)
-        // const id = getAttribute('id').split('-')[1]
+        // Comment.buildCommentForm(this.id);
+        Comment.displayComments();
+        Comment.buildCommentForm(this.id);
         this.buildUpdateFast();
         this.buildDeleteButton();
-        Comment.buildCommentForm(this.id);
-        Comment.buildSubmitButton(this.id);
     }
 
 
