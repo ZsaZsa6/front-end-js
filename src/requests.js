@@ -11,8 +11,11 @@ const loadFasts = () => {
     .then(res => res.json())
     .then(json => {
       json.forEach(data => {
-        new Fast(data.fast.id, data.fast.active, data.hours, data.minutes).render();
-        new Comment(data.comments, data.fast.id).render();
+       const fast = new Fast(data.fast.id, data.fast.active, data.hours, data.minutes);
+       data.fast.comments.forEach(comment => {
+        fast.addComment(comment)
+       } )
+       fast.render();
       })
 
     })
@@ -39,12 +42,9 @@ const createComment = (comment) => {
     )
   })
     .then(res => res.json())
-    .then(data => {
-      
-      // console.log(comment)
+    .then(comment => {
+      Fast.findById(comment.fast_id).addComment(comment)
 
-      const newComment = new Comment(data.comment.content, data.comment.id, comment.fast.id)
-      Fast.addComment(newComment)
     })
 
 }
@@ -59,8 +59,7 @@ const createFast = () => {
   })
     .then(res => res.json())
     .then(data => {
-      const fast = new Fast(data.fast.id, data.fast.active, data.hours, data.minutes).render();
-      data.fast.comments.forEach(comment => fast.addComment(comment))
+      new Fast(data.fast.id, data.fast.active, data.hours, data.minutes).render();
     })
 }
 // Update 

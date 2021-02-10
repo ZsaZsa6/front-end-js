@@ -1,29 +1,19 @@
 body {
-    margin: 0;
-    padding: 0;
+    background-color: #cfdada;
+    
+    margin: 2;
+    padding: 2;
   }
   
-  header {
-    background-color: #4caf50;
-    margin: 0 auto;
+  header h1 {
+    
+    text-align: center;
+    text-decoration-color: azure;
+  
     height: 50px;
   }
   
-  header h2 {
+  header h4 {
     padding: 10px;
     margin: 0;
   }
-  
-   /* @media only screen and (min-width: 500px) {
-    main {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-  
-  @media only screen and (min-width: 850px) {
-    main {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-  }
-   */
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css" integrity="sha512-C7hOmCgGzihKXzyPU/z4nv97W0d9bv4ALuuEbSf6hm93myico9qa0hv4dODThvCsqQUmKmLcJmlpRmCaApr83g==" crossorigin="anonymous" />

@@ -37,9 +37,14 @@ class Fast {
         
         const div = document.createElement('div')
         document.querySelector("body").appendChild(div)
+        div.setAttribute('id', `${this.id}`)
         div.appendChild(this.counterFast)
-        // Comment.buildCommentForm(this.id);
-        Comment.displayComments();
+        const commentUl = document.createElement('ul')
+        document.getElementById(this.id)
+        const input = document.getElementById(`$this.id}`)
+        div.appendChild(commentUl)
+        // commentUl.appendChild(input)
+        
         Comment.buildCommentForm(this.id);
         this.buildUpdateFast();
         this.buildDeleteButton();
@@ -83,13 +88,10 @@ class Fast {
     }
 
 
-
-
-
-
     buildDeleteButton() {
 
         const div = document.createElement("div")
+        
         const deleteF = document.createElement("button");
         deleteF.innerHTML = "Delete Fast"
         document.querySelector("body").appendChild(div)
@@ -97,7 +99,7 @@ class Fast {
         deleteF.setAttribute('id', `delete-${this.id}`)
 
         // const id = getAttribute('id').split('-')[1]
-        deleteF.addEventListener('click', () => deleteFast(this.id))
+        deleteF.addEventListener('click', () => delete(this.id))
     }
 
 
@@ -114,9 +116,10 @@ class Fast {
     }
 
     addComment(comment) {
+
         const newComment = new Comment(comment.content, comment.id, this.id)
         this.comments = { ...this.comments, [comment.id]: newComment }
-        comment.render()
+        newComment.render();
     }
 }
 
