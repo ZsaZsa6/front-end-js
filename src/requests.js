@@ -12,10 +12,10 @@ const loadFasts = () => {
     .then(json => {
       json.forEach(data => {
        const fast = new Fast(data.fast.id, data.fast.active, data.hours, data.minutes);
+       fast.render();
        data.fast.comments.forEach(comment => {
         fast.addComment(comment)
        } )
-       fast.render();
       })
 
     })
