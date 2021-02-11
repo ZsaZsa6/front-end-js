@@ -3,24 +3,21 @@ const FASTS_URL = `${BASE_URL}/fasts`
 const COMMENTS_URL = `${BASE_URL}/comments`
 
 
-
-
-// Index
 const loadFasts = () => {
   fetch(FASTS_URL)
     .then(res => res.json())
     .then(json => {
       json.forEach(data => {
-       const fast = new Fast(data.fast.id, data.fast.active, data.hours, data.minutes);
-       fast.render();
-       data.fast.comments.forEach(comment => {
-        fast.addComment(comment)
-       } )
+        const fast = new Fast(data.fast.id, data.fast.active, data.hours, data.minutes);
+        fast.render();
+        data.fast.comments.forEach(comment => {
+          fast.addComment(comment)
+        })
       })
 
     })
 }
-// Show
+
 const showFasts = () => {
   fetch(FAST_URL)
     .then(res => res.json())
@@ -29,27 +26,25 @@ const showFasts = () => {
       new Comment(data.comments, data.fast.id).render();
     })
 }
-// Create
+
 const createComment = (comment) => {
   fetch(COMMENTS_URL, {
     method: "POST",
     headers: {
-       'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(
-      
-     comment
+
+      comment
     )
   })
     .then(res => res.json())
     .then(comment => {
       Fast.findById(comment.fast_id).addComment(comment)
-
     })
-
 }
-const createFast = () => {
 
+const createFast = () => {
   fetch(FASTS_URL, {
     method: "POST",
     headers: {
@@ -62,11 +57,9 @@ const createFast = () => {
       new Fast(data.fast.id, data.fast.active, data.hours, data.minutes).render();
     })
 }
-// Update 
 
 const stopFast = (id) => {
   fetch(FASTS_URL + `/${id}`, {
-  
     method: "PATCH",
     headers: {
       'Content-Type': 'application/json',
@@ -78,11 +71,10 @@ const stopFast = (id) => {
     })
     .catch(errorHandling)
 }
-// Delete
+
 const deleteFast = (id) => {
   fetch(FASTS_URL + `/${id}`, {
     method: "DELETE"
-
   })
     .then(() => {
       Fast.findById(id).delete();
@@ -91,13 +83,12 @@ const deleteFast = (id) => {
     .catch(errorHandling)
 }
 
-
 const errorHandling = (error) => {
-  // let element = document.createElement('div')
-  // element.setAttribute('class', 'danger')
-  // let alert = alert(element)
-  // alert.$el.innerText = error.message
-  // document.querySelector('body').appendChild(alert.$el)
+  let element = document.createElement('div')
+  element.setAttribute('class', 'danger')
+  let alert = alert(element)
+  alert.$el.innerText = error.message
+  document.querySelector('body').appendChild(alert.$el)
 }
 
 

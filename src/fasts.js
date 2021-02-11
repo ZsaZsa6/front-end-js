@@ -12,7 +12,6 @@ class Fast {
         this.constructor.all = { ...this.constructor.all, [id]: this }
     }
 
-
     static findById(id) {
         return this.all[id]
     }
@@ -29,14 +28,11 @@ class Fast {
                 this.hours++
             }
             this.counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
-
         }, 60000)
-
     }
 
     render() {
         const div = document.createElement('div')
-
         div.setAttribute('id', `fast-${this.id}`)
         document.querySelector("body").appendChild(div)
         div.appendChild(this.counterFast)
@@ -51,7 +47,6 @@ class Fast {
         document.getElementById(`delete-${this.id}`).disabled = true;
         
     }
-
 
     buildUpdateFast() {
         
@@ -83,9 +78,7 @@ class Fast {
         }
     }
 
-   
     buildDeleteButton() {
-
         const deleteF = document.createElement("button");
         deleteF.innerHTML = "Delete Fast"
         document.getElementById(`fast-${this.id}`).appendChild(deleteF)
@@ -94,20 +87,12 @@ class Fast {
     }
 
     delete() {
-
         document.getElementById(`fast-${this.id}`).remove()
     }
 
     addComment(comment) {
-
         const newComment = new Comment(comment.content, comment.id, this.id)
         this.comments = { ...this.comments, [comment.id]: newComment }
         newComment.render();
     }
 }
-
-
-
-
-
-
