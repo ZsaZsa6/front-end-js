@@ -1,0 +1,29 @@
+body {
+    background-color: #b4bcc5;
+    
+    margin: 2;
+    padding: 2;
+  }
+
+  .fast {
+    
+      text-align: left;
+      height: 275px;
+      width: 35%;
+      background-color: powderblue;
+      
+  }
+  .fast-ul {
+    background-color: rgb(230, 201, 180);
+    padding-right: 35%;
+  }
+ #createB {
+  font-size: large;
+ }
+ #counter-fast {
+  font-size: x-large;
+ }
+
+
+
+ 

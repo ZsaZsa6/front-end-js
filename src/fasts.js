@@ -27,16 +27,19 @@ class Fast {
                 this.minutes = this.minutes - 60
                 this.hours++
             }
-            this.counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
+            this.counterFast.innerHTML = `You have been fasting for ${this.hours} hours and ${this.minutes} minutes`
         }, 60000)
     }
 
     render() {
         const div = document.createElement('div')
         div.setAttribute('id', `fast-${this.id}`)
+        div.setAttribute('class', 'fast')
         document.querySelector("body").appendChild(div)
+        this.counterFast.setAttribute('id', 'counter-fast')
         div.appendChild(this.counterFast)
         const ul = document.createElement('ul')
+        ul.setAttribute('class', 'fast-ul')
         ul.setAttribute('id', `comment-list-${this.id}`)
         div.appendChild(ul)
         
@@ -59,9 +62,6 @@ class Fast {
         
     }
     
-    
-    
-    
     stop(hours, minutes) {
         this.active = false
         this.hours = hours
@@ -74,7 +74,7 @@ class Fast {
             document.getElementById(`stop-${this.id}`).disabled = true;
             document.getElementById(`delete-${this.id}`).disabled = false;
         }else {
-            this.counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
+            this.counterFast.innerHTML = `You have been fasting for ${this.hours} hours and ${this.minutes} minutes`
         }
     }
 
