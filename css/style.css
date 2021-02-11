@@ -8,20 +8,22 @@ body {
   .fast {
     
       text-align: left;
-      height: 275px;
+      height: 90%;
       width: 35%;
       background-color: powderblue;
       
   }
   .fast-ul {
     background-color: rgb(230, 201, 180);
-    padding-right: 35%;
+    height:auto
   }
  #createB {
   font-size: large;
  }
  #counter-fast {
   font-size: x-large;
+  height: 25%;
+
  }
 
 

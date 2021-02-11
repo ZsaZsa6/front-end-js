@@ -27,7 +27,7 @@ class Fast {
                 this.minutes = this.minutes - 60
                 this.hours++
             }
-            this.counterFast.innerHTML = `You have been fasting for ${this.hours} hours and ${this.minutes} minutes`
+            this.counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
         }, 60000)
     }
 
