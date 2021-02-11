@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     create.addEventListener('click', () => {
         alert("Your fast time has begun")
         createFast();
-        // document.getElementById('createB').disabled = false;    
     })
     loadFasts()
     

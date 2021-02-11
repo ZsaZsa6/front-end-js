@@ -74,7 +74,6 @@ class Fast {
             this.counterFast.innerHTML = `You ended your fast at ${this.hours} hours and ${this.minutes} minutes`
             document.getElementById('createB').disabled = false;
             document.getElementById(`stop-${this.id}`).disabled = true;
-
         }else {
             this.counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
         }
