@@ -10,7 +10,6 @@ class Comment {
     }
     static buildCommentForm(fastId) {
         const fastdiv = document.getElementById(`fast-${fastId}`)
-        
         const commentForm = document.createElement('form')
         commentForm.setAttribute('id', `form-${fastId}`)
         commentForm.setAttribute('action', "")
@@ -34,26 +33,18 @@ class Comment {
         submitComment.setAttribute("value", "Submit");
         commentForm.appendChild(submitComment);
 
-
         document.querySelector('form').addEventListener('submit', (e) => {
             e.preventDefault()
             createComment({ fast_id: fastId, content: textareaelement.value })
             textareaelement.value = ""
         })
-
-
     }
 
     render() {
-       
         const comment = document.createElement('li')
         comment.setAttribute('id', `comment-${this.id}`)
         comment.innerHTML = this.content
         const ul = document.getElementById(`comment-list-${this.fastId}`)
         ul.appendChild(comment)
-
     }
-    
-
 }
-
