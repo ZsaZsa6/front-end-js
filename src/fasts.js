@@ -19,6 +19,7 @@ class Fast {
 
     startCounter() {
         document.getElementById('createB').disabled = true;
+        
         return setInterval(() => {
             if (this.minutes < 60) {
                 this.minutes++
@@ -47,11 +48,13 @@ class Fast {
         Comment.buildCommentForm(this.id);
         this.buildUpdateFast();
         this.buildDeleteButton();
+        document.getElementById(`delete-${this.id}`).disabled = true;
         
     }
 
 
     buildUpdateFast() {
+        
         const end = document.createElement("button");
         document.getElementById(`fast-${this.id}`).appendChild(end)
         end.innerHTML = "End Fast"
@@ -74,6 +77,7 @@ class Fast {
             this.counterFast.innerHTML = `You ended your fast at ${this.hours} hours and ${this.minutes} minutes`
             document.getElementById('createB').disabled = false;
             document.getElementById(`stop-${this.id}`).disabled = true;
+            document.getElementById(`delete-${this.id}`).disabled = false;
         }else {
             this.counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
         }
