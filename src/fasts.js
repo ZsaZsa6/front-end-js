@@ -18,7 +18,6 @@ class Fast {
 
     startCounter() {
         document.getElementById('createB').disabled = true;
-        
         return setInterval(() => {
             if (this.minutes < 60) {
                 this.minutes++
@@ -42,8 +41,6 @@ class Fast {
         ul.setAttribute('class', 'fast-ul')
         ul.setAttribute('id', `comment-list-${this.id}`)
         div.appendChild(ul)
-        
-        
         Comment.buildCommentForm(this.id);
         this.buildUpdateFast();
         this.buildDeleteButton();
@@ -58,8 +55,6 @@ class Fast {
         end.innerHTML = "End Fast"
         end.setAttribute('id', `stop-${this.id}`)
         end.addEventListener('click', () => stopFast(this.id))
-       
-        
     }
     
     stop(hours, minutes) {
