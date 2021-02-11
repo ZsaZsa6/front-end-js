@@ -66,6 +66,7 @@ const createFast = () => {
 
 const stopFast = (id) => {
   fetch(FASTS_URL + `/${id}`, {
+  
     method: "PATCH",
     headers: {
       'Content-Type': 'application/json',
@@ -73,7 +74,7 @@ const stopFast = (id) => {
   })
     .then(res => res.json())
     .then(data => {
-      Fast.findById(data.fast.id).update(data.hours, data.minutes);
+      Fast.findById(data.fast.id).stop(data.hours, data.minutes);
     })
     .catch(errorHandling)
 }
