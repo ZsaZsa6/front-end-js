@@ -18,7 +18,7 @@ class Fast {
     }
 
     startCounter() {
-
+        document.getElementById('createB').disabled = true;
         return setInterval(() => {
             if (this.minutes < 60) {
                 this.minutes++
@@ -42,11 +42,12 @@ class Fast {
         const ul = document.createElement('ul')
         ul.setAttribute('id', `comment-list-${this.id}`)
         div.appendChild(ul)
-
-
+        
+        
         Comment.buildCommentForm(this.id);
         this.buildUpdateFast();
         this.buildDeleteButton();
+        
     }
 
 
@@ -56,10 +57,13 @@ class Fast {
         end.innerHTML = "End Fast"
         end.setAttribute('id', `stop-${this.id}`)
         end.addEventListener('click', () => stopFast(this.id))
+       
+        
     }
-
-
-
+    
+    
+    
+    
     stop(hours, minutes) {
         this.active = false
         this.hours = hours
@@ -68,6 +72,9 @@ class Fast {
             clearInterval(this.counterId)
             alert("Your fast time has ended")
             this.counterFast.innerHTML = `You ended your fast at ${this.hours} hours and ${this.minutes} minutes`
+            document.getElementById('createB').disabled = false;
+            document.getElementById(`stop-${this.id}`).disabled = true;
+
         }else {
             this.counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
         }
