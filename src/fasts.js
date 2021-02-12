@@ -68,6 +68,7 @@ class Fast {
             document.getElementById('createB').disabled = false;
             document.getElementById(`stop-${this.id}`).disabled = true;
             document.getElementById(`delete-${this.id}`).disabled = false;
+            document.getElementById(`form-${this.id}`).disabled = true;
         }else {
             this.counterFast.innerHTML = `You have been fasting for ${this.hours} hours and ${this.minutes} minutes`
         }
