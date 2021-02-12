@@ -1,11 +1,29 @@
+const FASTS_URL = `${BASE_URL}/fasts`
+
+const loadFasts = () => {
+    fetch(FASTS_URL)
+      .then(res => res.json())
+      .then(json => {
+        json.forEach(data => {
+          const fast = new Fast(data.hours, data.minutes);
+            
+        })
+
+    })
+}
+
+
+
 let chart = JSC.chart('chartDiv', {
     type: 'column',
     yAxis: {
-        scale_type: 'stacked',
-        label_text: 'Hours Fasted'
+        scale_type: 'stackedFull',
+        label_text: 'Hours Fasted',
+        yAxis_scale_type: "time"
     },
     title_label_text: 'Your Fast History',
     xAxis_label_text: 'Days',
+    // xAxis_scale_type: 'time',
     series: [
         {
             name: 'Fasting Time',
@@ -33,21 +51,3 @@ let chart = JSC.chart('chartDiv', {
 });
 
 
-//  name: 'Saw', 
-//       id: 's1', 
-//       points: [ 
-//         { x: 'Q1', y: 230 }, 
-//         { x: 'Q2', y: 240 }, 
-//         { x: 'Q3', y: 267 }, 
-//         { x: 'Q4', y: 238 } 
-//       ] 
-//     }, 
-//     { 
-//       name: 'Hammer', 
-//       points: [ 
-//         { x: 'Q1', y: 325 }, 
-//         { x: 'Q2', y: 367 }, 
-//         { x: 'Q3', y: 382 }, 
-//         { x: 'Q4', y: 371 } 
-//       ] 
-//     }
