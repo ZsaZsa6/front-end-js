@@ -12,13 +12,13 @@ const loadFasts = () => {
         fast.render();  
         data.fast.comments.forEach(comment => {
           fast.addComment(comment);
-        data.fast.forEach(fast => {
-          const chart = new Chart(fast.created_at, fast.updated_at);
-          chart.render();
+          json.forEach(data => {
+            const chart = new Chart(data.hours, data.minutes, data.fast.created_at, data.fast.updated_at);
+            chart.render();
+          })
         })
         })
    })
-  })
 }
 
 const showFasts = () => {
