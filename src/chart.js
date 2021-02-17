@@ -1,16 +1,11 @@
-const FASTS_URL = `${BASE_URL}/fasts`
 
-const loadFasts = () => {
-    fetch(FASTS_URL)
-      .then(res => res.json())
-      .then(json => {
-        json.forEach(data => {
-          const fast = new Fast(data.hours, data.minutes);
-            
-        })
 
-    })
-}
+//  const time = Fast.hours + Fast.minutes
+// }
+//  +0000
+// let points = data.map(d => {
+//     return { x: d.date, y: d.hours };
+//   });
 
 
 
@@ -19,7 +14,7 @@ let chart = JSC.chart('chartDiv', {
     yAxis: {
         scale_type: 'stackedFull',
         label_text: 'Hours Fasted',
-        yAxis_scale_type: "time"
+        yAxis_scale_type: 'time'
     },
     title_label_text: 'Your Fast History',
     xAxis_label_text: 'Days',

@@ -9,13 +9,16 @@ const loadFasts = () => {
     .then(json => {
       json.forEach(data => {
         const fast = new Fast(data.fast.id, data.fast.active, data.hours, data.minutes);
-        fast.render();
+        fast.render();  
         data.fast.comments.forEach(comment => {
-          fast.addComment(comment)
+          fast.addComment(comment);
+        data.fast.forEach(fast => {
+          const chart = new Chart(fast.created_at, fast.updated_at);
+          chart.render();
         })
-      })
-
-    })
+        })
+   })
+  })
 }
 
 const showFasts = () => {
