@@ -5,58 +5,66 @@ class Chart {
         this.createdAt = createdAt
         this.updatedAt = updatedAt
         this.feastHours = 24 - this.hours
-        // debugger
-
-        // this.startDate = createdAt.getDate();
-        // this.endDate = updatedAt.getDate();
-
-    }
-    render() {
-        // startDate = createdAt.getDate();
-        // endDate = updatedAt.getDate();
-        this.hours.map
-        startDate = `${this.createdAt}`.getDate()
-        endDate = `${this.updatedAt}`.getDate()
         debugger
+    }
+    calculations() {
+        this.createdAt = createdAt
+        this.hours = hours
 
+        const startDate = createdAt.getDate();
+        // const endDate = this.updatedAt.getDate();
+
+
+        const pointsData = (startDate, hours)
+        const points = pointsData.map(d => {
+            return { x: d.startDate, y: d.hours };
+        })
+        buildChart(points).render();
+    }
+
+    render() {
+        this.calculations();
+    }
+    buildChart(points) {
 
         JSC.chart('chartDiv', {
             type: 'column',
             yAxis: {
-                scale_type: 'stackedFull',
+                scale_type: 'stacked',
                 label_text: 'Hours Fasted',
-                yAxis_scale_type: 'stackedFull',
-                yAxis: [{}, { id: "y2" }],
-                series: [{'f1'}, { yAxis: "y2" }]
+                // yAxis_scale_type: 'stackedFull',
+
             },
+            series: [{ points: points }],
             title_label_text: 'Your Fast History',
             xAxis_label_text: 'Days',
-            // xAxis_scale_type: 'time',
+            xAxis_scale_type: 'time',
             series: [
                 {
                     name: 'Fasting Time',
                     id: 'f1',
                     points: [
-                        { x: startDate, y: this.hours },
-                        { x: '', y: this.hours },
-                        { x: 'startDate', y: this.hours },
-                        { x: "startDate", y: this.hours },
-                        { x: "startDate", y: this.hours }
-
-                    ]
-                },
-                {
-                    name: 'Feasting Time',
-                    id: 'f2',
-                    points: [
-                        { x: 'endDate', y: this.feastHours },
-                        { x: 'endDate', y: this.feastHours },
-                        { x: 'endDate', y: this.feastHours },
-                        { x: 'Thursday', y: this.feastHours },
-                        { x: 'Friday', y: this.feastHours }
+                        { x: '', y: 10 },
+                        { x: '', y: 10 },
+                        { x: '', y: 20 },
+                        { x: '', y: 10 },
+                        { x: '', y: 20 }
                     ]
                 }
+
+                // {
+                //     name: 'Feasting Time',
+                //     id: 'f2',
+                //     points: [
+                //         { x: 'endDate', y: 14 },
+                //         { x: 'endDate', y: 14 },
+                //         { x: 'endDate', y: 4 },
+                //         { x: 'Thursday', y: 14 },
+                //         { x: 'Friday', y: 4 }
+                //     ]
+                // }
             ]
+
         });
     }
 }
