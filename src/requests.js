@@ -8,18 +8,17 @@ const loadFasts = () => {
     .then(res => res.json())
     .then(json => {
       json.forEach(data => {
-        const fast = new Fast(data.fast.id, data.fast.active, data.hours, data.minutes);
+        const fast = new Fast(data.fast.id, data.fast.active, data.fast.created_at, data.fast.updated_at, data.hours, data.minutes);
         fast.render();  
         data.fast.comments.forEach(comment => {
           fast.addComment(comment);
-          json.forEach(data => {
-            const chart = new Chart(data.hours, data.minutes, data.fast.created_at, data.fast.updated_at);
-            chart.render();
-          })
         })
-        })
+      })
+      new Chart().render()
    })
 }
+
+
 
 const showFasts = () => {
   fetch(FAST_URL)

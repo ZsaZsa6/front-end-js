@@ -1,10 +1,13 @@
 class Fast {
     static all = {}
-    constructor(id, active, hours, minutes) {
+    constructor(id, active, createdAt, updatedAt, hours, minutes) {
         this.active = active
         this.id = id
+        this.createdAt = createdAt
+        this.updatedAt = updatedAt
         this.hours = hours
         this.minutes = minutes
+        this.feastHours = 24 - this.hours       
         this.counterFast = document.createElement("div")
         this.counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
         this.counterId = this.startCounter()
