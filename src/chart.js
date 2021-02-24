@@ -4,14 +4,9 @@ class Chart {
     }
 
     render() {
-    //  
-    
-    const data = Object.values(Fast.all).map(fast => [fast.createdAt, fast.hours])
-    
-    
         
-    
-    var chart = JSC.chart('chartDiv', { 
+    const data = Object.values(Fast.all).map(fast => [fast.createdAt, fast.hours])
+    JSC.chart('chartDiv', { 
       debug: true, 
       type: 'column', 
       yAxis: { 
