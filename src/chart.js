@@ -6,12 +6,14 @@ class Chart {
     render() {
         
     const data = Object.values(Fast.all).map(fast => [fast.createdAt, fast.hours])
+    const data2 = Object.values(Fast.all).map(fast => [fast.updatedAt, fast.feastHours])
     JSC.chart('chartDiv', { 
       debug: true, 
       type: 'column', 
       yAxis: { 
         scale_type: 'stacked', 
-        label_text: 'Hours'
+        label_text: 'Hours',
+
       }, 
       title_label_text: 'Fasting History', 
       xAxis_label_text: 'Date', 
@@ -22,8 +24,10 @@ class Chart {
                     id: 'f1',
                     points: data
                     
-                }                               
-            ]
+            
+        }
+    ]
+ 
         });
     }
 }

@@ -18,8 +18,6 @@ const loadFasts = () => {
    })
 }
 
-
-
 const showFasts = () => {
   fetch(FAST_URL)
     .then(res => res.json())
@@ -71,7 +69,6 @@ const stopFast = (id) => {
     .then(data => {
       Fast.findById(data.fast.id).stop(data.hours, data.minutes);
     })
-    .catch(errorHandling)
 }
 
 const deleteFast = (id) => {
@@ -82,15 +79,6 @@ const deleteFast = (id) => {
       Fast.findById(id).delete();
       Comment.findById(id).delete();
     })
-    .catch(errorHandling)
-}
-
-const errorHandling = (error) => {
-  let element = document.createElement('div')
-  element.setAttribute('class', 'danger')
-  let alert = alert(element)
-  alert.$el.innerText = error.message
-  document.querySelector('body').appendChild(alert.$el)
 }
 
 

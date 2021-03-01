@@ -5,9 +5,9 @@ class Fast {
         this.id = id
         this.createdAt = createdAt
         this.updatedAt = updatedAt
+        this.feastHours = 24 - hours
         this.hours = hours
         this.minutes = minutes
-        this.feastHours = 24 - this.hours       
         this.counterFast = document.createElement("div")
         this.counterFast.innerHTML = `${this.hours} hours and ${this.minutes} minutes`
         this.counterId = this.startCounter()
@@ -34,32 +34,36 @@ class Fast {
     }
 
     render() {
-        const div = document.createElement('div')
-        div.setAttribute('id', `fast-${this.id}`)
-        div.setAttribute('class', 'fast')
-        document.querySelector("body").appendChild(div)
-        this.counterFast.setAttribute('id', 'counter-fast')
-        div.appendChild(this.counterFast)
-        const ul = document.createElement('ul')
-        ul.setAttribute('class', 'fast-ul')
-        ul.setAttribute('id', `comment-list-${this.id}`)
-        div.appendChild(ul)
-        Comment.buildCommentForm(this.id);
-        this.buildUpdateFast();
+            const div = document.createElement('div')
+            div.setAttribute('id', `fast-${this.id}`)
+            div.setAttribute('class', 'fast')
+            document.querySelector("body").appendChild(div)
+            this.counterFast.setAttribute('id', 'counter-fast')
+            div.appendChild(this.counterFast)
+            const ul = document.createElement('ul')
+            ul.setAttribute('class', 'fast-ul')
+            ul.setAttribute('id', `comment-list-${this.id}`)
+            div.appendChild(ul)
+            if (this.active === true){
+            Comment.buildCommentForm(this.id);
+            this.buildUpdateFast();
+            // document.getElementById(`delete-${this.id}`).disabled = true;
+        }
+        else{
+            
+            
+        }
         this.buildDeleteButton();
-        document.getElementById(`delete-${this.id}`).disabled = true;
-        
     }
 
     buildUpdateFast() {
-        
         const end = document.createElement("button");
         document.getElementById(`fast-${this.id}`).appendChild(end)
         end.innerHTML = "End Fast"
         end.setAttribute('id', `stop-${this.id}`)
         end.addEventListener('click', () => stopFast(this.id))
     }
-    
+
     stop(hours, minutes) {
         this.active = false
         this.hours = hours
@@ -71,9 +75,13 @@ class Fast {
             document.getElementById('createB').disabled = false;
             document.getElementById(`stop-${this.id}`).disabled = true;
             document.getElementById(`delete-${this.id}`).disabled = false;
-            document.getElementById(`form-${this.id}`).disabled = true;
-        }else {
+            document.getElementById(`form-${this.id}`).remove();
+        } else {
             this.counterFast.innerHTML = `You have been fasting for ${this.hours} hours and ${this.minutes} minutes`
+            document.getElementById('createB').disabled = true;
+            document.getElementById(`stop-${this.id}`).disabled = false;
+            document.getElementById(`delete-${this.id}`).disabled = true;
+            document.getElementById(`form-${this.id}`).disabled = false;
         }
     }
 
