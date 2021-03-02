@@ -1,11 +1,9 @@
 class Fast {
     static all = {}
-    constructor(id, active, createdAt, updatedAt, hours, minutes) {
+    constructor(id, active, createdAt, hours, minutes) {
         this.active = active
         this.id = id
         this.createdAt = createdAt
-        this.updatedAt = updatedAt
-        this.feastHours = 24 - hours
         this.hours = hours
         this.minutes = minutes
         this.counterFast = document.createElement("div")
@@ -47,7 +45,7 @@ class Fast {
             if (this.active === true){
             Comment.buildCommentForm(this.id);
             this.buildUpdateFast();
-            // document.getElementById(`delete-${this.id}`).disabled = true;
+            document.getElementById(`delete-${this.id}`).disabled = true;
         }
         else{
             
