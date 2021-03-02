@@ -18,7 +18,6 @@ class Fast {
     }
 
     startCounter() {
-        document.getElementById('createB').disabled = true;
         return setInterval(() => {
             if (this.minutes < 60) {
                 this.minutes++

@@ -8,7 +8,7 @@ const loadFasts = () => {
     .then(res => res.json())
     .then(json => {
       json.forEach(data => {
-        const fast = new Fast(data.fast.id, data.fast.active, data.fast.created_at, data.fast.updated_at, data.hours, data.minutes);
+        const fast = new Fast(data.fast.id, data.fast.active, data.fast.created_at, data.hours, data.minutes);
         fast.render();  
         data.fast.comments.forEach(comment => {
           fast.addComment(comment);
