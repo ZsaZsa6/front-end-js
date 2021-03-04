@@ -1,9 +1,10 @@
 class Fast {
     static all = {}
-    constructor(id, active, createdAt, hours, minutes) {
+    constructor(id, active, createdAt, updatedAt, hours, minutes) {
         this.active = active
         this.id = id
         this.createdAt = createdAt
+        this.updatedAt = updatedAt
         this.hours = hours
         this.minutes = minutes
         this.counterFast = document.createElement("div")
@@ -31,24 +32,23 @@ class Fast {
     }
 
     render() {
-            const div = document.createElement('div')
-            div.setAttribute('id', `fast-${this.id}`)
-            div.setAttribute('class', 'fast')
-            document.querySelector("body").appendChild(div)
-            this.counterFast.setAttribute('id', 'counter-fast')
-            div.appendChild(this.counterFast)
-            const ul = document.createElement('ul')
-            ul.setAttribute('class', 'fast-ul')
-            ul.setAttribute('id', `comment-list-${this.id}`)
-            div.appendChild(ul)
-            if (this.active === true){
+        const div = document.createElement('div')
+        div.setAttribute('id', `fast-${this.id}`)
+        div.setAttribute('class', 'fast')
+        document.querySelector("body").appendChild(div)
+        this.counterFast.setAttribute('id', 'counter-fast')
+        div.appendChild(this.counterFast)
+        const ul = document.createElement('ul')
+        ul.setAttribute('class', 'fast-ul')
+        ul.setAttribute('id', `comment-list-${this.id}`)
+        div.appendChild(ul)
+        if (this.active === true) {
             Comment.buildCommentForm(this.id);
             this.buildUpdateFast();
-            document.getElementById(`delete-${this.id}`).disabled = true;
         }
-        else{
-            
-            
+        else {
+
+
         }
         this.buildDeleteButton();
     }

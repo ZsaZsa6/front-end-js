@@ -8,14 +8,14 @@ const loadFasts = () => {
     .then(res => res.json())
     .then(json => {
       json.forEach(data => {
-        const fast = new Fast(data.fast.id, data.fast.active, data.fast.created_at, data.hours, data.minutes);
-        fast.render();  
+        const fast = new Fast(data.fast.id, data.fast.active, data.fast.created_at, data.fast.updated_at, data.hours, data.minutes);
+        fast.render();
         data.fast.comments.forEach(comment => {
           fast.addComment(comment);
         })
       })
       new Chart().render()
-   })
+    })
 }
 
 const showFasts = () => {
@@ -34,7 +34,6 @@ const createComment = (comment) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(
-
       comment
     )
   })
@@ -42,6 +41,7 @@ const createComment = (comment) => {
     .then(comment => {
       Fast.findById(comment.fast_id).addComment(comment)
     })
+    .catch(errorHandling)
 }
 
 const createFast = () => {
@@ -56,6 +56,7 @@ const createFast = () => {
     .then(data => {
       new Fast(data.fast.id, data.fast.active, data.hours, data.minutes).render();
     })
+    .catch(errorHandling)
 }
 
 const stopFast = (id) => {
@@ -69,6 +70,7 @@ const stopFast = (id) => {
     .then(data => {
       Fast.findById(data.fast.id).stop(data.hours, data.minutes);
     })
+    .catch(errorHandling)
 }
 
 const deleteFast = (id) => {
@@ -79,6 +81,21 @@ const deleteFast = (id) => {
       Fast.findById(id).delete();
       Comment.findById(id).delete();
     })
+    .catch(errorHandling)
 }
+
+const errorHandling = (error) => {
+  if (error) {
+    alert(`Something went wrong:` + error);
+  }
+  else {
+
+  }
+}
+
+
+
+
+
 
 
