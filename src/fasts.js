@@ -4,12 +4,12 @@ class Fast {
         this.active = active
         this.id = id
         this.createdAt = createdAt
-        this.updatedAt = updatedAt
+        this.updatedAt = new Date(updatedAt)
         this.feastHours = 24 - this.hours
         this.hours = hours
         this.minutes = minutes
         this.counterFast = document.createElement("div")
-        this.counterFast.innerHTML = `Your fast is loading. Please wait one minute.`
+        this.counterFast.innerHTML = `You have been fasting for ${this.hours} hours and ${this.minutes} minutes.`
         this.counterId = this.startCounter()
         this.comments = {}
         this.constructor.all = { ...this.constructor.all, [id]: this }
@@ -21,7 +21,7 @@ class Fast {
 
     startCounter() {
         if (this.active === false) {
-            this.counterFast.innerHTML = `You fasted ${this.hours} hours and ${this.minutes} minutes`
+            this.counterFast.innerHTML = `You fasted ${this.hours} hours and ${this.minutes} minutes and ended your fast on ${this.updatedAt.toDateString()}.`
         }
         else{
             setInterval(() => {
