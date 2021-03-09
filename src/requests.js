@@ -79,7 +79,6 @@ const deleteFast = (id) => {
   })
     .then(() => {
       Fast.findById(id).delete();
-      Comment.findById(id).delete();
     })
     .catch(errorHandling)
 }

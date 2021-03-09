@@ -5,8 +5,8 @@ class Chart {
 
     render() {
         const points = Object.values(Fast.all).map(fast => [fast.createdAt, fast.hours])
-       
-       
+
+
         JSC.chart('chartDiv', {
             debug: true,
             type: 'column',
@@ -18,16 +18,12 @@ class Chart {
             title_label_text: 'Fasting History',
             xAxis_label_text: 'Date',
             xAxis: { scale_type: 'time' },
-            // points: points,
             series: [
                 {
                     points: points,
                     name: 'Fasting Time',
-                    id: 's1',
-                    
                 }
             ]
-
         });
     }
 }
