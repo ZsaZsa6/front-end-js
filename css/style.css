@@ -4,6 +4,10 @@ body {
     margin: 2;
     padding: 2;
   }
+  .darkmode{
+    background-color: black;
+    color: white;
+  }
 
   .fast {
     

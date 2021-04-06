@@ -46,5 +46,11 @@ class Comment {
         comment.innerHTML = this.content
         const ul = document.getElementById(`comment-list-${this.fastId}`)
         ul.appendChild(comment)
+       
+
+       
+        
     }
+  
+
 }
